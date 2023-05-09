@@ -3,7 +3,7 @@ import { Link, Route, Routes } from "react-router-dom";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); //??
+  const [error, setError] = useState("");
 
   const handleLogin = async () => {
     const response = await fetch("https://jsonplaceholder.typicode.com/users");
@@ -15,16 +15,48 @@ function Login() {
       setError("Username does not exist.");
       return;
     }
+    // password is the last 4 digits of "lat"
+    const userPassword = user.address.geo.lat.slice(-4);
 
-    if (user.username === username && user.email === password) {
-      // successful login logic here
-      // localStorage.setItem("user", users[i]);
-      // <Link to="/logged">go</Link>;
+    if (user.username === username && userPassword === password) {
+      console.log("seccessful login");
+      localStorage.setItem("user", user);
+      <Link to="/logged">go</Link>;
       // go to logged page
     } else {
       setError("Incorrect username or password.");
     }
   };
+
+  return (
+    <div>
+      <form>
+        <h2>Please enter your name:</h2>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          // onChange={handleChangeName}
+          // onChange={(e) => this.changedName(e.target.value)}
+        ></input>
+        <h2>Please enter your password:</h2>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          // onChange={handlePasswordChange}
+          // onChange={(e) => this.changedPassword(e.target.value)}
+        ></input>
+        <button type="button" onClick={handleLogin}>
+          Log in
+        </button>
+      </form>
+      {error && <div style={{ color: "red" }}>{error}</div>}
+    </div>
+  );
+}
+export default Login;
+
 
   // const handleChangeName = (event) => {
   //   setName(event.target.value);
@@ -62,31 +94,3 @@ function Login() {
   //       }
   //     });
   // };
-  return (
-    <div>
-      <form>
-        <h2>Please enter your name:</h2>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          // onChange={handleChangeName}
-          // onChange={(e) => this.changedName(e.target.value)}
-        ></input>
-        <h2>Please enter your password:</h2>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          // onChange={handlePasswordChange}
-          // onChange={(e) => this.changedPassword(e.target.value)}
-        ></input>
-        <button type="button" onClick={handleLogin}>
-          Log in
-        </button>
-      </form>
-      {error && <div style={{ color: "red" }}>{error}</div>}
-    </div>
-  );
-}
-export default Login;
