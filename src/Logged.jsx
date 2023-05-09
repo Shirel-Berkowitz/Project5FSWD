@@ -7,9 +7,10 @@ import Posts from "./Posts";
 import Info from "./Info";
 import Todos from "./Todos";
 function Logged() {
+  let user = JSON.parse(localStorage.getItem("user"));
   return (
     <div>
-      <h1>welcome, user!</h1>
+      <h1>welcome, {user.name}!</h1>
       <button>
         <Link to="/">log out</Link>
       </button>

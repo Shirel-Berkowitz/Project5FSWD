@@ -19,12 +19,12 @@ function Login() {
     const userPassword = user.address.geo.lat.slice(-4);
 
     if (user.username === username && userPassword === password) {
-      console.log("seccessful login");
-      localStorage.setItem("user", user);
-      <Link to="/logged">go</Link>;
+      console.log("successful login");
+      localStorage.setItem("user", JSON.stringify(user));
+      setError(<Link to="/logged">go to the next page</Link>);
       // go to logged page
     } else {
-      setError("Incorrect username or password.");
+      setError("Incorrect password.");
     }
   };
 
