@@ -17,9 +17,28 @@ function Login() {
     setPassword(val);
   };
   const log = () => {
-    //check that everything works
-    //save to storage
-    //go to logged page
+    //let link="https://jsonplaceholder.typicode.com/users/"+password;
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(json => {
+        const users=json;
+        let found=-1;
+        for(let i=0; i<users.length; i++){
+          if(users[i].username==name && users[i].geo.lat.split(".")[1]==password){
+            found=i;
+          }
+          if(found>-1){
+            localStorage.setItem("user", users[i]);
+            <Link to="/logged">go</Link>
+            //go to logged page
+          }
+          else{
+            alert("incorrect username or password");
+          }
+        }
+      });
+    
+    
   };
   return (
     <div>
