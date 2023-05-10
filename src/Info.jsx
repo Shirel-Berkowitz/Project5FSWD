@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 function Info() {
   function getInfo(){
-    let user = JSON.parse(localStorage.getItem("user"));
+    let user = JSON.parse(localStorage.getItem("ourUser"));
     return <>
       <h2>{user.name}</h2>
       <p>
