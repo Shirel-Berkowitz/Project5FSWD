@@ -5,7 +5,8 @@ import Logged from "./Logged";
 import Posts from "./Posts";
 
 function HomePage() {
-  localStorage.clear();
+  localStorage.removeItem("ourUser");
+
   return (
     <div>
       <h1>hello, welcome to our app</h1>

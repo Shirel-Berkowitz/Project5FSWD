@@ -20,9 +20,10 @@ function Login() {
 
     if (user.username === username && userPassword === password) {
       console.log("successful login");
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.removeItem("ourUser");
+      localStorage.setItem("ourUser", JSON.stringify(user));
       setError(<Link to="/logged">go to the next page</Link>);
-      // go to logged page
+      
     } else {
       setError("Incorrect password.");
     }

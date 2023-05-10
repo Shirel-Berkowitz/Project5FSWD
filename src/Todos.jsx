@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 
 function Todos() {
- // const [todos, setTodos] = useState("");
-/*
+  const [todos, setTodos] = useState("");
+
   const handleLogin = async () => {
-    let user = JSON.parse(localStorage.getItem("user"));
+    console.log("ok ok ok")
+    let user = JSON.parse(localStorage.getItem("ourUser"));
     const response = await fetch("https://jsonplaceholder.typicode.com/todos");
     const tt = await response.json();
     const userTodos = tt.filter((todo) => todo.userId === user.id);
     setTodos(userTodos);
     console.log(todos[0].title)
-  }*/
+  }
+  handleLogin()
   function setCheck(td){
     if(td.completed){
       return <><input type="checkbox" name={td.id} checked></input>
@@ -21,38 +23,32 @@ function Todos() {
                 <label for={td.id}>{td.title}</label></>
     }
   }
-  const setTodo= async ()=>{
-    let user = JSON.parse(localStorage.getItem("user"));
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-    const tt = await response.json();
-    console.log("hi");
-    let userTodos=[];
-    for(let i=0; i<tt.length; i++){
-      if(tt[i].userId==user.id){
-        userTodos.push(tt[i]);
-      }
-      
-    }
+  
+   
     //const userTodos = tt.filter((todo) => todo.userId === user.id);
-
- 
+  function func(){
+    setTimeout(() => {
+      
+    }, 3000);
     return <ul>
-      {userTodos.map(td=>(
-        <li>
-          {setCheck(td)}
-        </li>
-      )
-        
-      )}
+    {todos.map(td=>(
+      <li>
+        {setCheck(td)}
+      </li>
+    )
+      
+    )}
     </ul>
-
-    
-    
   }
+    
+    
+  
   return (
     <>
-      <h2>your todos:</h2>
-      {setTodo()}
+    <h2>your todos:</h2>
+    
+  {func()}
+   
     </>
   );
 }

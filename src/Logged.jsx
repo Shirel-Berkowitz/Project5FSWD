@@ -7,7 +7,7 @@ import Posts from "./Posts";
 import Info from "./Info";
 import Todos from "./Todos";
 function Logged() {
-  let user = JSON.parse(localStorage.getItem("user"));
+  let user = JSON.parse(localStorage.getItem("ourUser"));
   return (
     <div>
       <h1>welcome, {user.name}!</h1>
