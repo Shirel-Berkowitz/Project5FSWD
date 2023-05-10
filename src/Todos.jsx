@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React, { useState,  useEffect  } from "react";
 
 function Todos() {
-  const [todos, setTodos] = useState("");
-
-  const handleLogin = async () => {
-    console.log("ok ok ok")
+  const [todos, setTodos] = useState([]);
+  useEffect(() => {
     let user = JSON.parse(localStorage.getItem("ourUser"));
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-    const tt = await response.json();
-    const userTodos = tt.filter((todo) => todo.userId === user.id);
-    setTodos(userTodos);
-    console.log(todos[0].title)
-  }
-  handleLogin()
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then(response => response.json())
+      .then(json => {const userTodos = json.filter((todo) => todo.userId === user.id);
+        setTodos(userTodos);})
+  });
+
+ 
   function setCheck(td){
     if(td.completed){
       return <><input type="checkbox" name={td.id} checked></input>
@@ -24,13 +22,13 @@ function Todos() {
     }
   }
   
-   
-    //const userTodos = tt.filter((todo) => todo.userId === user.id);
-  function func(){
-    setTimeout(() => {
-      
-    }, 3000);
-    return <ul>
+  
+  
+  
+  return (
+    <>
+    <h2>your todos:</h2>
+    <ul>
     {todos.map(td=>(
       <li>
         {setCheck(td)}
@@ -39,19 +37,14 @@ function Todos() {
       
     )}
     </ul>
-  }
-    
-    
   
-  return (
-    <>
-    <h2>your todos:</h2>
-    
-  {func()}
-   
+
     </>
   );
 }
-//NOT FINISHED THIS PAGE
-//DOESNT WORK YET
+/**
+ left to do:
+ 1.fix checkbox so it is possible to uncheck it
+ 2.have an option to sort the todos in different ways
+ */
 export default Todos;
