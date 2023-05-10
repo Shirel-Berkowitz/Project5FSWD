@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 function Albums() {
   console.log("i got to the albums yo");
