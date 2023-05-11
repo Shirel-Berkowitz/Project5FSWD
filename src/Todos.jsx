@@ -4,12 +4,19 @@ function Todos() {
   const [todos, setTodos] = useState([]);
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem("ourUser"));
-    fetch("https://jsonplaceholder.typicode.com/todos")
+    let ttt = JSON.parse(localStorage.getItem("todos"));
+    if(ttt){
+      setTodos(ttt);
+    }
+    else{
+      fetch("https://jsonplaceholder.typicode.com/todos")
       .then((response) => response.json())
       .then((json) => {
         const userTodos = json.filter((todo) => todo.userId === user.id);
         setTodos(userTodos);
       });
+    }
+   
   }, []); // Add an empty dependency array to execute the effect only once
 
   // //save the updated todo to local storage --> DIDN'T DO ANYTHING
@@ -28,6 +35,7 @@ function Todos() {
       return todo;
     });
     setTodos(updatedTodos);
+    localStorage.setItem("todos", JSON.stringify(updatedTodos));
   }
 
   function setCheck(td) {
