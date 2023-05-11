@@ -5,16 +5,16 @@ function Todos() {
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem("ourUser"));
     let ttt = JSON.parse(localStorage.getItem("todos"));
-    if(ttt){
+    if (ttt) {
       setTodos(ttt);
-    }
-    else{
+    } else {
       fetch("https://jsonplaceholder.typicode.com/todos")
-      .then((response) => response.json())
-      .then((json) => {
-        const userTodos = json.filter((todo) => todo.userId === user.id);
-        setTodos(userTodos);
-      });
+        .then((response) => response.json())
+        .then((json) => {
+          const userTodos = json.filter((todo) => todo.userId === user.id);
+          setTodos(userTodos);
+        });
+    }
   }, []); // Add an empty dependency array to execute the effect only once (to save unnecessary API requests and re-rendering of the component.)
 
   // //save the updated todo to local storage --> DIDN'T DO ANYTHING
