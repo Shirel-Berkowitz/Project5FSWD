@@ -23,7 +23,6 @@ function Login() {
       localStorage.removeItem("ourUser");
       localStorage.setItem("ourUser", JSON.stringify(user));
       setError(<Link to="/logged">go to the next page</Link>);
-      
     } else {
       setError("Incorrect password.");
     }
@@ -33,20 +32,18 @@ function Login() {
     <div>
       <form>
         <h2>Please enter your name:</h2>
+        <h4>username: Bret</h4>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          // onChange={handleChangeName}
-          // onChange={(e) => this.changedName(e.target.value)}
         ></input>
         <h2>Please enter your password:</h2>
+        <h4>password: 3159</h4>
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          // onChange={handlePasswordChange}
-          // onChange={(e) => this.changedPassword(e.target.value)}
         ></input>
         <button type="button" onClick={handleLogin}>
           Log in
@@ -58,40 +55,39 @@ function Login() {
 }
 export default Login;
 
-
-  // const handleChangeName = (event) => {
-  //   setName(event.target.value);
-  // };
-  // const handlePasswordChange = (event) => {
-  //   setPassword(event.target.value);
-  // };
-  // const changedName = (val) => {
-  //   setName(val);
-  // };
-  // const changedPassword = (val) => {
-  //   setPassword(val);
-  // };
-  // const log = () => {
-  //   //let link="https://jsonplaceholder.typicode.com/users/"+password;
-  //   fetch("https://jsonplaceholder.typicode.com/users")
-  //     .then((response) => response.json())
-  //     .then((json) => {
-  //       const users = json;
-  //       let found = -1;
-  //       for (let i = 0; i < users.length; i++) {
-  //         if (
-  //           users[i].username == name &&
-  //           users[i].geo.lat.split(".")[1] == password
-  //         ) {
-  //           found = i;
-  //         }
-  //         if (found > -1) {
-  //           localStorage.setItem("user", users[i]);
-  //           <Link to="/logged">go</Link>;
-  //           //go to logged page
-  //         } else {
-  //           alert("incorrect username or password");
-  //         }
-  //       }
-  //     });
-  // };
+// const handleChangeName = (event) => {
+//   setName(event.target.value);
+// };
+// const handlePasswordChange = (event) => {
+//   setPassword(event.target.value);
+// };
+// const changedName = (val) => {
+//   setName(val);
+// };
+// const changedPassword = (val) => {
+//   setPassword(val);
+// };
+// const log = () => {
+//   //let link="https://jsonplaceholder.typicode.com/users/"+password;
+//   fetch("https://jsonplaceholder.typicode.com/users")
+//     .then((response) => response.json())
+//     .then((json) => {
+//       const users = json;
+//       let found = -1;
+//       for (let i = 0; i < users.length; i++) {
+//         if (
+//           users[i].username == name &&
+//           users[i].geo.lat.split(".")[1] == password
+//         ) {
+//           found = i;
+//         }
+//         if (found > -1) {
+//           localStorage.setItem("user", users[i]);
+//           <Link to="/logged">go</Link>;
+//           //go to logged page
+//         } else {
+//           alert("incorrect username or password");
+//         }
+//       }
+//     });
+// };

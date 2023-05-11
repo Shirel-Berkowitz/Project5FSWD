@@ -10,7 +10,7 @@ function Todos() {
         const userTodos = json.filter((todo) => todo.userId === user.id);
         setTodos(userTodos);
       });
-  }, []); // Add an empty dependency array to execute the effect only once
+  }, []); // Add an empty dependency array to execute the effect only once (to save unnecessary API requests and re-rendering of the component.)
 
   // //save the updated todo to local storage --> DIDN'T DO ANYTHING
   // useEffect(() => {
@@ -67,7 +67,7 @@ function Todos() {
       <h2>your todos:</h2>
       <ul>
         {todos.map((td) => (
-          <li>{setCheck(td)}</li>
+          <li key={td.id}>{setCheck(td)}</li>
         ))}
       </ul>
     </>
