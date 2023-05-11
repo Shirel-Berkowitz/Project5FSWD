@@ -6,6 +6,7 @@ import Posts from "./Posts";
 
 function HomePage() {
   localStorage.removeItem("ourUser");
+  localStorage.removeItem("todos");
 
   return (
     <div>
