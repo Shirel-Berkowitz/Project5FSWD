@@ -17,11 +17,6 @@ function Todos() {
     }
   }, []); // Add an empty dependency array to execute the effect only once (to save unnecessary API requests and re-rendering of the component.)
 
-  // //save the updated todo to local storage --> DIDN'T DO ANYTHING
-  // useEffect(() => {
-  //   localStorage.setItem("todos", JSON.stringify(todos));
-  // }, [todos]);
-
   function handleCheckChange(event, td) {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === td.id) {
@@ -50,24 +45,6 @@ function Todos() {
     );
   }
 
-  // function setCheck(td) {
-  //   if (td.completed) {
-  //     return (
-  //       <>
-  //         <input type="checkbox" name={td.id} checked></input>
-  //         <label for={td.id}>{td.title}</label>
-  //       </>
-  //     );
-  //   } else {
-  //     return (
-  //       <>
-  //         <input type="checkbox" name={td.id}></input>
-  //         <label for={td.id}>{td.title}</label>
-  //       </>
-  //     );
-  //   }
-  // }
-
   return (
     <>
       <h2>your todos:</h2>
@@ -81,7 +58,6 @@ function Todos() {
 }
 /**
  left to do:
- 1. save the todos in localStorage
- 2. have an option to sort the todos in different ways
+have an option to sort the todos in different ways
  */
 export default Todos;

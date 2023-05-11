@@ -43,11 +43,11 @@ function Albums() {
       <ul>
         {photos.map((phtos) => (
           <li key={phtos.id}>
-            <button onClick={() => albumPressed(phtos)}>
+            <div>
               <h3>{phtos.title}</h3>
               <p>{phtos.url}</p>
               <p>{phtos.thumbnailUrl}</p>
-            </button>
+            </div>
           </li>
         ))}
       </ul>
