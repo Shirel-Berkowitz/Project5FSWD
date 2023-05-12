@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 
 function Posts() {
   const [posts, setPosts] = useState([]);
-  const [selectedPost, setSelectedPost] = useState(null); // New state variable
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem("ourUser"));
@@ -16,6 +17,13 @@ function Posts() {
 
   function postPressed(pst) {
     setSelectedPost(pst); // Update selected post
+    //show all comments related to the clicked post
+    fetch("https://jsonplaceholder.typicode.com/comments")
+      .then((response) => response.json())
+      .then((json) => {
+        const postComments = json.filter((cmnts) => cmnts.postId === pst.id);
+        setComments(postComments);
+      });
   }
 
   return (
@@ -31,6 +39,18 @@ function Posts() {
               <h3>{pst.title}</h3>
               <p>{pst.body}</p>
             </button>
+          </li>
+        ))}
+      </ul>
+
+      <ul>
+        {comments.map((cmnts) => (
+          <li key={cmnts.id}>
+            <div className="commentsDiv">
+              <h3>{cmnts.name}</h3>
+              <h4>{cmnts.email}</h4>
+              <p>{cmnts.body}</p>
+            </div>
           </li>
         ))}
       </ul>

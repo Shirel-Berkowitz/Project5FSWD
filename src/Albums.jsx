@@ -39,7 +39,7 @@ function Albums() {
         ))}
       </ul>
 
-      <ul className="photosDiv">
+      <ul className="photosUl">
         {photos.map((phtos) => (
           <li key={phtos.id}>
             <div>

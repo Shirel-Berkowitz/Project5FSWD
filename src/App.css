@@ -22,6 +22,12 @@ ul {
   background-color: lavender;
 }
 
+.commentsDiv {
+  border: 5px solid mintcream;
+  background-color: rgb(166, 225, 227);
+  border-radius: 10px;
+  transition: border-color 0.25s;
+}
 /* .photosDiv{
   
 } */
