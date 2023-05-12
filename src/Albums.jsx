@@ -30,8 +30,8 @@ function Albums() {
       <h2>Your albums:</h2>
       <ul>
         {albums.map((albm) => (
-          <li key={albm.id}>
-            <button onClick={() => albumPressed(albm)}>
+          <li className="Album" key={albm.id}>
+            <button className="AlbumBtn" onClick={() => albumPressed(albm)}>
               <h3>{albm.title}</h3>
               <p>{albm.body}</p>
             </button>
@@ -39,14 +39,13 @@ function Albums() {
         ))}
       </ul>
 
-      <h2>Album photos:</h2>
-      <ul>
+      <ul className="photosDiv">
         {photos.map((phtos) => (
           <li key={phtos.id}>
             <div>
               <h3>{phtos.title}</h3>
-              <p>{phtos.url}</p>
-              <p>{phtos.thumbnailUrl}</p>
+              {/* <p>{phtos.url}</p> */}
+              <img src={phtos.thumbnailUrl} alt={phtos.title} />
             </div>
           </li>
         ))}
