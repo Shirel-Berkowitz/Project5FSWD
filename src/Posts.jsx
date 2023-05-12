@@ -39,3 +39,8 @@ function Posts() {
 }
 
 export default Posts;
+
+/**
+ left to do:
+ have an option to view comments
+ */

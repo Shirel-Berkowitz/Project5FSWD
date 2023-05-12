@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 function Todos() {
   const [todos, setTodos] = useState([]);
+  const [sortOption, setSortOption] = useState("");
+
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem("ourUser"));
     let ttt = JSON.parse(localStorage.getItem("todos"));
@@ -15,7 +17,24 @@ function Todos() {
           setTodos(userTodos);
         });
     }
-  }, []); // Add an empty dependency array to execute the effect only once (to save unnecessary API requests and re-rendering of the component.)
+  }, []);
+
+  useEffect(() => {
+    // Sort the todos whenever the sort option changes
+    const sortedTodos = [...todos];
+    if (sortOption === "byId") {
+      sortedTodos.sort((a, b) => a.id - b.id);
+    } else if (sortOption === "unchecked") {
+      sortedTodos.sort((a, b) => a.completed - b.completed);
+    } else if (sortOption === "checked") {
+      sortedTodos.sort((a, b) => !a.completed - !b.completed);
+    } else if (sortOption === "alphabet") {
+      sortedTodos.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortOption === "random") {
+      sortedTodos.sort(() => Math.random() - 0.5);
+    }
+    setTodos(sortedTodos);
+  }, [sortOption]); // Include sortOption as a dependency
 
   function handleCheckChange(event, td) {
     const updatedTodos = todos.map((todo) => {
@@ -48,6 +67,23 @@ function Todos() {
   return (
     <>
       <h2>your todos:</h2>
+
+      <div>
+        <label htmlFor="sort">Sort by:</label>
+        <select
+          name="sort"
+          id="sort"
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+        >
+          <option value="byId">Default</option>
+          <option value="checked">Checked first</option>
+          <option value="unchecked">Unchecked first</option>
+          <option value="alphabet">Alphabetical</option>
+          <option value="random">Random</option>
+        </select>
+      </div>
+
       <ul>
         {todos.map((td) => (
           <li key={td.id}>{setCheck(td)}</li>
@@ -56,8 +92,5 @@ function Todos() {
     </>
   );
 }
-/**
- left to do:
-have an option to sort the todos in different ways
- */
+
 export default Todos;
