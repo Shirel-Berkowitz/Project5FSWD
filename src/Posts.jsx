@@ -4,6 +4,8 @@ function Posts() {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [comments, setComments] = useState([]);
+  //const [show, setShow]=useState([]);
+  //const show
 
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem("ourUser"));
@@ -25,7 +27,31 @@ function Posts() {
         setComments(postComments);
       });
   }
-
+  /* function selectComments(pst){
+    setShow(show.push(pst));
+  } */
+  function showComments(pst){
+    if(pst.id==comments[1].postId){
+      return 
+      <>
+      <h3>comments:</h3>
+      <ul>
+        {comments.map((cmnts) => (
+          <li key={cmnts.id}>
+            <div className="commentsDiv">
+              <h3>{cmnts.name}</h3>
+              <h4>{cmnts.email}</h4>
+              <p>{cmnts.body}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+      </>
+    }
+    else{
+      return <></>
+    }
+  }
   return (
     <>
       <h2>your posts:</h2>
@@ -39,21 +65,13 @@ function Posts() {
               <h3>{pst.title}</h3>
               <p>{pst.body}</p>
             </button>
+            
+            {()=>this.showComments(pst)}
           </li>
         ))}
       </ul>
 
-      <ul>
-        {comments.map((cmnts) => (
-          <li key={cmnts.id}>
-            <div className="commentsDiv">
-              <h3>{cmnts.name}</h3>
-              <h4>{cmnts.email}</h4>
-              <p>{cmnts.body}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+      
     </>
   );
 }
