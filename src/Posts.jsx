@@ -31,7 +31,14 @@ function Posts() {
     setShow(show.push(pst));
   } */
   function showComments(pst){
-    if(pst.id==comments[1].postId){
+    console.log("my brains are fried");
+    /* let comments=[];
+    fetch("https://jsonplaceholder.typicode.com/comments")
+      .then((response) => response.json())
+      .then((json) => {
+        comments = json.filter((cmnts) => cmnts.postId === pst.id);
+      }); */
+    if(pst=selectedPost){
       return 
       <>
       <h3>comments:</h3>
@@ -46,11 +53,12 @@ function Posts() {
           </li>
         ))}
       </ul>
-      </>
+      </>;
     }
     else{
-      return <></>
+      return <></>;
     }
+   
   }
   return (
     <>
@@ -66,7 +74,7 @@ function Posts() {
               <p>{pst.body}</p>
             </button>
             
-            {()=>this.showComments(pst)}
+            {showComments(pst)}
           </li>
         ))}
       </ul>
