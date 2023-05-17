@@ -4,8 +4,7 @@ function Posts() {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [comments, setComments] = useState([]);
-  //const [show, setShow]=useState([]);
-  //const show
+  
 
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem("ourUser"));
@@ -27,19 +26,10 @@ function Posts() {
         setComments(postComments);
       });
   }
-  /* function selectComments(pst){
-    setShow(show.push(pst));
-  } */
-  function showComments(pst){
-    console.log("my brains are fried");
-    /* let comments=[];
-    fetch("https://jsonplaceholder.typicode.com/comments")
-      .then((response) => response.json())
-      .then((json) => {
-        comments = json.filter((cmnts) => cmnts.postId === pst.id);
-      }); */
-    if(pst=selectedPost){
-      return 
+  
+  function showComments(pst){  
+    if(pst==selectedPost){
+      return (
       <>
       <h3>comments:</h3>
       <ul>
@@ -53,7 +43,7 @@ function Posts() {
           </li>
         ))}
       </ul>
-      </>;
+      </>);
     }
     else{
       return <></>;
