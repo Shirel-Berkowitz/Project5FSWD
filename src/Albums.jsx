@@ -56,7 +56,9 @@ function Albums() {
             ))}
           </ul>
           {displayedPhotos.length < photos.length && (
-            <button onClick={loadMorePhotos}>Load More</button>
+            <button className="LoadMoreBtn" onClick={loadMorePhotos}>
+              Load More
+            </button>
           )}
         </>
       );
