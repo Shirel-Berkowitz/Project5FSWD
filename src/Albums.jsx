@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link, Route, Routes } from "react-router-dom";
 
 function Albums() {
   const [albums, setAlbums] = useState([]);
   const [photos, setPhotos] = useState([]);
+  const [selectedAlbum, setselectedAlbum] = useState(null);
   const [displayedPhotos, setDisplayedPhotos] = useState([]);
   const [start, setStart] = useState(0);
   const [limit, setLimit] = useState(10);
@@ -18,20 +18,50 @@ function Albums() {
       });
   }, []);
 
-  function albumPressed(albm) {
-    //show all photos related to the clicked album
-    fetch("https://jsonplaceholder.typicode.com/photos")
-      .then((response) => response.json())
-      .then((json) => {
-        const albumPhotos = json.filter((phtos) => phtos.albumId === albm.id);
-        setPhotos(albumPhotos);
-        setDisplayedPhotos(albumPhotos.slice(start, start + limit));
-      });
-  }
+  useEffect(() => {
+    if (selectedAlbum) {
+      fetch("https://jsonplaceholder.typicode.com/photos")
+        .then((response) => response.json())
+        .then((json) => {
+          const albumPhotos = json.filter(
+            (phtos) => phtos.albumId === selectedAlbum.id
+          );
+          setPhotos(albumPhotos);
+          setDisplayedPhotos(albumPhotos.slice(start, start + limit));
+        });
+    }
+  }, [selectedAlbum]);
 
   function loadMorePhotos() {
     setStart(start + limit);
     setDisplayedPhotos(photos.slice(start + limit, start + 2 * limit));
+  }
+
+  function albumPressed(albm) {
+    setselectedAlbum(albm);
+  }
+
+  function showPhotos(albm) {
+    if (albm === selectedAlbum) {
+      return (
+        <>
+          <ul className="photosUl">
+            {displayedPhotos.map((phtos) => (
+              <li key={phtos.id}>
+                <div>
+                  <h3>{phtos.title}</h3>
+                  <img src={phtos.thumbnailUrl} alt={phtos.title} />
+                </div>
+              </li>
+            ))}
+          </ul>
+          {displayedPhotos.length < photos.length && (
+            <button onClick={loadMorePhotos}>Load More</button>
+          )}
+        </>
+      );
+    }
+    return null;
   }
 
   return (
@@ -40,28 +70,17 @@ function Albums() {
       <ul>
         {albums.map((albm) => (
           <li className="Album" key={albm.id}>
-            <button className="AlbumBtn" onClick={() => albumPressed(albm)}>
+            <button
+              onClick={() => albumPressed(albm)}
+              className={selectedAlbum === albm ? "selectedAlbum" : ""}
+            >
               <h3>{albm.title}</h3>
               <p>{albm.body}</p>
             </button>
+            {showPhotos(albm)}
           </li>
         ))}
       </ul>
-
-      <ul className="photosUl">
-        {displayedPhotos.map((phtos) => (
-          <li key={phtos.id}>
-            <div>
-              <h3>{phtos.title}</h3>
-              <img src={phtos.thumbnailUrl} alt={phtos.title} />
-            </div>
-          </li>
-        ))}
-      </ul>
-
-      {photos.length > displayedPhotos.length && (
-        <button onClick={loadMorePhotos}>Load More</button>
-      )}
     </>
   );
 }
