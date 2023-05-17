@@ -4,6 +4,9 @@ import { Link, Route, Routes } from "react-router-dom";
 function Albums() {
   const [albums, setAlbums] = useState([]);
   const [photos, setPhotos] = useState([]);
+  const [displayedPhotos, setDisplayedPhotos] = useState([]);
+  const [start, setStart] = useState(0);
+  const [limit, setLimit] = useState(10);
 
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem("ourUser"));
@@ -22,7 +25,13 @@ function Albums() {
       .then((json) => {
         const albumPhotos = json.filter((phtos) => phtos.albumId === albm.id);
         setPhotos(albumPhotos);
+        setDisplayedPhotos(albumPhotos.slice(start, start + limit));
       });
+  }
+
+  function loadMorePhotos() {
+    setStart(start + limit);
+    setDisplayedPhotos(photos.slice(start + limit, start + 2 * limit));
   }
 
   return (
@@ -40,16 +49,19 @@ function Albums() {
       </ul>
 
       <ul className="photosUl">
-        {photos.map((phtos) => (
+        {displayedPhotos.map((phtos) => (
           <li key={phtos.id}>
             <div>
               <h3>{phtos.title}</h3>
-              {/* <p>{phtos.url}</p> */}
               <img src={phtos.thumbnailUrl} alt={phtos.title} />
             </div>
           </li>
         ))}
       </ul>
+
+      {photos.length > displayedPhotos.length && (
+        <button onClick={loadMorePhotos}>Load More</button>
+      )}
     </>
   );
 }
