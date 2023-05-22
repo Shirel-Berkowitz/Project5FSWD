@@ -5,6 +5,7 @@ import Logged from "./Logged";
 import Posts from "./Posts";
 
 function HomePage() {
+  //when logging in/out
   localStorage.removeItem("ourUser");
   localStorage.removeItem("todos");
 

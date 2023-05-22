@@ -33,14 +33,14 @@ function Login() {
     <div>
       <form>
         <h2>Please enter your name:</h2>
-        <h4>username: Bret</h4>
+        {/* <h4>username: Bret</h4> */}
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         ></input>
         <h2>Please enter your password:</h2>
-        <h4>password: 3159</h4>
+        {/* <h4>password: 3159</h4> */}
         <input
           type="password"
           value={password}
