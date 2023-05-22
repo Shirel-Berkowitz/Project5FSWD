@@ -35,6 +35,14 @@ function Albums() {
   function loadMorePhotos() {
     setStart(start + limit);
     setDisplayedPhotos(photos.slice(start + limit, start + 2 * limit));
+    const targetButton = document.getElementById("clickedBtn");
+    if (targetButton) {
+      const { top } = targetButton.getBoundingClientRect();
+      window.scrollTo({
+        top: window.pageYOffset + top,
+        behavior: "smooth",
+      });
+    }
   }
 
   function albumPressed(albm) {
@@ -73,6 +81,7 @@ function Albums() {
         {albums.map((albm) => (
           <li className="Album" key={albm.id}>
             <button
+              id="clickedBtn"
               onClick={() => albumPressed(albm)}
               className={selectedAlbum === albm ? "selectedAlbum" : ""}
             >
