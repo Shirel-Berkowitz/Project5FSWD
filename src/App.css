@@ -17,9 +17,13 @@ ul {
   list-style-type: none;
 }
 
+li {
+  padding: 3px;
+}
+
 .selectedPost {
-  border: 10px solid purple;
-  background-color: lavender;
+  border: 10px solid #716e63;
+  background-color: rgb(214, 214, 214);
 }
 
 .selectedAlbum {
@@ -31,18 +35,15 @@ ul {
 }
 
 .LoadMoreBtn {
-  border: 5px solid mintcream;
-  background-color: rgb(166, 225, 227);
+  border: 5px solid #716e63;
+  background-color: rgb(207, 204, 188);
   border-radius: 10px;
   transition: border-color 0.25s;
 }
 
 .commentsDiv {
-  border: 5px solid mintcream;
-  background-color: rgb(166, 225, 227);
+  border: 5px solid #716e63;
+  background-color: rgb(207, 204, 188);
   border-radius: 10px;
   transition: border-color 0.25s;
 }
-/* .photosDiv{
-  
-} */

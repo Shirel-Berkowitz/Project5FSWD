@@ -52,7 +52,7 @@ function Todos() {
 
   function setCheck(td) {
     return (
-      <>
+      <dive>
         <input
           type="checkbox"
           name={td.id}
@@ -60,7 +60,7 @@ function Todos() {
           onChange={(event) => handleCheckChange(event, td)}
         ></input>
         <label htmlFor={td.id}>{td.title}</label>
-      </>
+      </dive>
     );
   }
 
@@ -84,7 +84,7 @@ function Todos() {
         </select>
       </div>
 
-      <ul>
+      <ul className="checkboxDiv">
         {todos.map((td) => (
           <li key={td.id}>{setCheck(td)}</li>
         ))}

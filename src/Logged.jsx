@@ -11,19 +11,19 @@ function Logged() {
   return (
     <div>
       <h1>welcome, {user.name}!</h1>
-      <button>
+      <button className="mainBtn">
         <Link to="/">log out</Link>
       </button>
-      <button>
+      <button className="mainBtn">
         <Link to="/logged/albums">albums</Link>
       </button>
-      <button>
+      <button className="mainBtn">
         <Link to="/logged/posts">posts</Link>
       </button>
-      <button>
+      <button className="mainBtn">
         <Link to="/logged/todos">todos</Link>
       </button>
-      <button>
+      <button className="mainBtn">
         <Link to="/logged/info">info</Link>
       </button>
       <Routes>

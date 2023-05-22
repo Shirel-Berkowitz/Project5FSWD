@@ -30,7 +30,7 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="background1">
       <form>
         <h2>Please enter your name:</h2>
         {/* <h4>username: Bret</h4> */}
