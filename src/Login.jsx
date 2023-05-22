@@ -22,7 +22,8 @@ function Login() {
       console.log("successful login");
       localStorage.removeItem("ourUser");
       localStorage.setItem("ourUser", JSON.stringify(user));
-      setError(<Link to="/logged">go to the next page</Link>);
+      document.location.href = "/logged";
+      //setError(<Link to="/logged">go to the next page</Link>);
     } else {
       setError("Incorrect password.");
     }
@@ -54,40 +55,3 @@ function Login() {
   );
 }
 export default Login;
-
-// const handleChangeName = (event) => {
-//   setName(event.target.value);
-// };
-// const handlePasswordChange = (event) => {
-//   setPassword(event.target.value);
-// };
-// const changedName = (val) => {
-//   setName(val);
-// };
-// const changedPassword = (val) => {
-//   setPassword(val);
-// };
-// const log = () => {
-//   //let link="https://jsonplaceholder.typicode.com/users/"+password;
-//   fetch("https://jsonplaceholder.typicode.com/users")
-//     .then((response) => response.json())
-//     .then((json) => {
-//       const users = json;
-//       let found = -1;
-//       for (let i = 0; i < users.length; i++) {
-//         if (
-//           users[i].username == name &&
-//           users[i].geo.lat.split(".")[1] == password
-//         ) {
-//           found = i;
-//         }
-//         if (found > -1) {
-//           localStorage.setItem("user", users[i]);
-//           <Link to="/logged">go</Link>;
-//           //go to logged page
-//         } else {
-//           alert("incorrect username or password");
-//         }
-//       }
-//     });
-// };
