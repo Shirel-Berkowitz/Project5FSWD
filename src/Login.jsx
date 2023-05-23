@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +22,6 @@ function Login() {
       localStorage.removeItem("ourUser");
       localStorage.setItem("ourUser", JSON.stringify(user));
       document.location.href = "/logged";
-      //setError(<Link to="/logged">go to the next page</Link>);
     } else {
       setError("Incorrect password.");
     }

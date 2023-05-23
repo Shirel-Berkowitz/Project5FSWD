@@ -23,6 +23,14 @@ function Posts() {
       .then((json) => {
         const postComments = json.filter((cmnts) => cmnts.postId === pst.id);
         setComments(postComments);
+        const targetButton = document.getElementById("clickedBtn");
+        if (targetButton) {
+          const { top } = targetButton.getBoundingClientRect();
+          window.scrollTo({
+            top: window.pageYOffset + top,
+            behavior: "smooth",
+          });
+        }
       });
   }
 
@@ -55,6 +63,7 @@ function Posts() {
         {posts.map((pst) => (
           <li key={pst.id}>
             <button
+              id="clickedBtn"
               onClick={() => postPressed(pst)}
               className={selectedPost === pst ? "selectedPost" : ""}
             >
@@ -71,8 +80,3 @@ function Posts() {
 }
 
 export default Posts;
-
-/**
- left to do:
- have an option to view comments
- */
