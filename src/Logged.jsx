@@ -1,11 +1,10 @@
-import React, { Component } from "react";
-import { useState } from "react";
+import React from "react";
 import { Link, Route, Routes } from "react-router-dom";
-import HomePage from "./HomePage";
 import Albums from "./Albums";
 import Posts from "./Posts";
 import Info from "./Info";
 import Todos from "./Todos";
+
 function Logged() {
   let user = JSON.parse(localStorage.getItem("ourUser"));
   return (

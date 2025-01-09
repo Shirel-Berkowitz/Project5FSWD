@@ -1,8 +1,5 @@
-import React, { Component } from "react";
-import { Link, Route, Routes } from "react-router-dom";
-import Login from "./Login";
-import Logged from "./Logged";
-import Posts from "./Posts";
+import React from "react";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   //when logging in/out
